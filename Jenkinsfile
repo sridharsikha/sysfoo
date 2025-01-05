@@ -4,20 +4,20 @@ pipeline {
     stages {
         stage('one') {
             steps {
-                echo 'Hello World'
-                sleep 3
+                echo 'step one'
+                sh 'mvn compile'
             }
         }
         stage('two') {
             steps {
-                echo 'Hello World1'
-                sleep 9
+                echo 'step 2'
+                sh 'mvn compile'
             }
         }
         stage('three') {
             steps {
-                echo 'Hello World2'
-                sleep 5
+                echo 'step 3'
+                sh 'mvn compile'
             }
         }
     }
