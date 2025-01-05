@@ -1,24 +1,34 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.9.6'
+    }
     stages {
-        stage('one') {
+        stage('build') {
             steps {
-                echo 'step one'
+                echo 'Compile app'
                 sh 'mvn compile'
             }
         }
-        stage('two') {
+        stage('test') {
             steps {
-                echo 'step 2'
-                sh 'mvn compile'
+                echo 'Run tests '
+                sh 'mvn clean test'
             }
         }
-        stage('three') {
+        stage('package') {
             steps {
-                echo 'step 3'
-                sh 'mvn compile'
+                echo 'Package'
+                sh 'mvn pakcage -DskipTests'
             }
         }
     }
+    post{
+    always{
+        echo 'pipeline completed'
+        }
+    }
 }
+
+
